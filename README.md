@@ -48,4 +48,4 @@ The highest-value contributions are data, not code: control interpretations, ove
 
 ## License
 
-TBD — MIT recommended for maximum reuse.
+MIT — see [LICENSE](LICENSE).
