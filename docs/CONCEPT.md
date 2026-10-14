@@ -20,12 +20,12 @@ The valuable parts are data, not code: control interpretations, DHS/DoD/FedRAMP 
 
 ## Architecture
 
-TypeScript single-file frontend with local-first IndexedDB, plus a small Python service for ingesting scanner outputs. No server required for the core workflow. See `src/model.ts` for the data model.
+TypeScript single-file frontend with local-first IndexedDB; the control catalog is generated from NIST's OSCAL content and bundled into the page. No server required for the core workflow. A small Python service for ingesting scanner outputs is on the roadmap. See `src/model.ts` for the data model.
 
 ## Roadmap
 
-1. Single-file UI: control browser, evidence attach, coverage dashboard
-2. POA&M tracker UI
-3. SSP skeleton export
+1. ~~Single-file UI: control browser, evidence attach, coverage dashboard~~ (done)
+2. ~~POA&M tracker UI~~ (done)
+3. ~~SSP skeleton export~~ (done: Markdown and OSCAL)
 4. Evidence collectors: AWS Config / Prowler findings mapped to controls
 5. Community data packs: DHS / DoD / FedRAMP overlays, control interpretations
