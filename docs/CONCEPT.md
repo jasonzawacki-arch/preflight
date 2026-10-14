@@ -27,5 +27,5 @@ TypeScript single-file frontend with local-first IndexedDB; the control catalog 
 1. ~~Single-file UI: control browser, evidence attach, coverage dashboard~~ (done)
 2. ~~POA&M tracker UI~~ (done)
 3. ~~SSP skeleton export~~ (done: Markdown and OSCAL)
-4. Evidence collectors: AWS Config / Prowler findings mapped to controls
+4. ~~Evidence collectors: AWS Config / Prowler findings mapped to controls~~ (done: Prowler and Security Hub import)
 5. Community data packs: DHS / DoD / FedRAMP overlays, control interpretations

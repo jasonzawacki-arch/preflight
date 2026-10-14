@@ -66,7 +66,7 @@ with sync_playwright() as pw:
 
     name, raw = download(p, '[data-act=x-poam-csv]')
     rows = list(csv.DictReader(io.StringIO(raw.decode())))
-    check('POA&M CSV has every item', len(rows) == 8 and rows[0]['POA&M ID'] == 'POAM-001')
+    check('POA&M CSV has every item', len(rows) == 9 and rows[0]['POA&M ID'] == 'POAM-001')
     check('CSV flags overdue items', sum(r['Overdue'] == 'yes' for r in rows) == 2, [r['Overdue'] for r in rows])
 
     # change something, back up, restore into a fresh browser

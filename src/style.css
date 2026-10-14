@@ -238,6 +238,13 @@ details li { margin: 2px 0; }
 .tbl td:first-child, .fam td { white-space: nowrap; }
 .tbl td { padding: 9px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
 .tbl tr.late td:first-child { box-shadow: inset 3px 0 0 var(--warn); }
+.scanfrom p { margin-bottom: 4px; }
+.scanfrom details { margin-top: 6px; }
+.res { font-size: 0.85rem; color: var(--ink-2); word-break: break-all; }
+.preview h2 { word-break: break-all; }
+.choices { margin-top: 14px; }
+.choices .check { margin-bottom: 10px; }
+code { font-size: 0.86em; background: var(--act-soft); padding: 0 4px; border-radius: 3px; word-break: break-all; }
 .facts { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0 0 14px; }
 .facts dt { color: var(--ink-3); }
 .facts dd { margin: 0; }

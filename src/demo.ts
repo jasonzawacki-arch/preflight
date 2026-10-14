@@ -106,6 +106,7 @@ const EVIDENCE: DemoEv[] = [
 interface DemoPoam {
   c: string; title: string; d: string; sev: PoamItem['severity']; st: PoamItem['status']; src: PoamItem['source']; poc: string;
   created: number; due: number; ms: [string, number, boolean][]; rr?: string;
+  scan?: { check: string; controls: string[]; resources: string[] };
 }
 const POAMS: DemoPoam[] = [
   { c: 'RA-5', title: 'Two high vulnerabilities past the 30-day remediation window', d: 'OpenSSL and kernel findings on the batch worker image remain after the August image rebuild was deferred.', sev: 'high', st: 'in-progress', src: 'scan', poc: 'Cloud Operations Lead', created: -45, due: 10, ms: [['Rebuild batch worker image with patched packages', -5, true], ['Redeploy and rescan', 7, false]] },
@@ -115,6 +116,8 @@ const POAMS: DemoPoam[] = [
   { c: 'AC-2(3)', title: 'Inactive accounts disabled after 120 days instead of 90', d: 'Okta inactivity rule is set to 120 days; the agency standard is 90.', sev: 'low', st: 'in-progress', src: 'assessment', poc: 'Identity and Access Lead', created: -20, due: 15, ms: [['Change Okta inactivity rule and notify users', 15, false]] },
   { c: 'IR-3', title: 'Incident response capability not tested this year', d: 'Annual incident response test is overdue.', sev: 'moderate', st: 'open', src: 'assessment', poc: 'ISSO', created: -100, due: -12, ms: [['Run phishing-to-compromise tabletop with the SOC', -12, false]] },
   { c: 'SC-7(4)', title: 'Egress allow list includes broad vendor ranges', d: 'The NAT egress allow list permits whole vendor CIDR ranges rather than specific endpoints.', sev: 'low', st: 'risk-accepted', src: 'pen-test', poc: 'Cloud Operations Lead', created: -150, due: 200, ms: [], rr: 'Low: outbound traffic is limited to TLS to three named vendors and is logged; the AO accepted the risk until the private endpoint migration.' },
+  { c: 'SI-4', title: 'Scan finding: GuardDuty detector is enabled and not suspended', d: 'Prowler check guardduty_is_enabled failed on 1 resource:\n- GuardDuty was suspended in us-gov-west-1 during the September network change.', sev: 'high', st: 'in-progress', src: 'scan', poc: 'Cloud Operations Lead', created: -40, due: 5, ms: [['Re-enable the detector and confirm findings reach the SIEM', 5, false]],
+    scan: { check: 'guardduty_is_enabled', controls: ['SI-4', 'SI-4(2)', 'SI-4(4)', 'AU-6(1)', 'IR-4(1)'], resources: ['arn:aws-us-gov:guardduty:us-gov-west-1:111122223333:detector/2cb1a3d4e5f6'] } },
   { c: 'SI-10', title: 'File upload type checking relied on extension only', d: 'Grant attachments were accepted by file extension without content checks.', sev: 'moderate', st: 'closed', src: 'pen-test', poc: 'Application Lead', created: -120, due: -30, ms: [['Add content-type sniffing and malware scanning on upload', -35, true]] },
 ];
 
@@ -174,6 +177,7 @@ export async function demoState(cat: Catalog): Promise<{ state: State; files: Re
       id: `POAM-${String(++s.seq.poam).padStart(3, '0')}`, controlId: p.c, title: p.title, description: p.d, severity: p.sev, status: p.st, source: p.src, poc: p.poc,
       created: addDays(t, p.created), scheduledCompletion: addDays(t, p.due), milestones: p.ms.map(([text, due, done]) => ({ text, due: addDays(t, due), done })),
       residualRisk: p.rr || '', closedAt: p.st === 'closed' ? addDays(t, p.due) : undefined,
+      scan: p.scan ? { key: `prowler:${p.scan.check}`, tool: 'Prowler', check: p.scan.check, controls: p.scan.controls, resources: p.scan.resources, lastSeen: addDays(t, p.created) } : undefined,
     });
     // the weakness shows on its control
     const a = s.a[p.c] || (s.a[p.c] = { impl: '', role: '', notes: '' });

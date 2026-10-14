@@ -12,7 +12,7 @@ def annotate(title, text):
     print(f"::error title={esc(title).replace(',', '%2C').replace(':', '%3A')}::{esc(text[-3000:])}", flush=True)
 
 
-for t in ['app.py', 'exports.py']:
+for t in ['app.py', 'exports.py', 'scan.py']:
     print(f'\n== {t}', flush=True)
     r = subprocess.run([sys.executable, str(here / t)], capture_output=True, text=True)
     sys.stdout.write(r.stdout)

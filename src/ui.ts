@@ -8,6 +8,8 @@ import {
 import { backupJson, fileStem, poamCsv, poamOscal, readBackup, sspMarkdown, sspOscal } from './exports.js';
 import { allFiles, clearFiles, delFile, getFile, putFile, saveState } from './store.js';
 import { blankState, demoState } from './demo.js';
+import { applyImport, parseScan, planImport, TOOL_NAME } from './scan.js';
+import type { ImportPlan } from './scan.js';
 
 let cat: Catalog;
 let ctl: Map<string, Control>;
@@ -31,7 +33,7 @@ const EV_TYPES: [EvidenceType, string][] = [
 const evType = (t: string) => (EV_TYPES.find((x) => x[0] === t) || EV_TYPES[6])[1];
 const SEV: [PoamItem['severity'], string][] = [['high', 'High'], ['moderate', 'Moderate'], ['low', 'Low']];
 const PSTAT: [PoamItem['status'], string][] = [['open', 'Open'], ['in-progress', 'In progress'], ['risk-accepted', 'Risk accepted'], ['closed', 'Closed']];
-const PSRC: [PoamItem['source'], string][] = [['assessment', 'Control assessment'], ['scan', 'Vulnerability scan'], ['pen-test', 'Penetration test'], ['self-identified', 'Self-identified']];
+const PSRC: [PoamItem['source'], string][] = [['assessment', 'Control assessment'], ['scan', 'Scan'], ['pen-test', 'Penetration test'], ['self-identified', 'Self-identified']];
 const label = <T extends string>(list: [T, string][], v: string) => (list.find((x) => x[0] === v) || [v, v])[1];
 const BASE_NAME: Record<string, string> = { L: 'Low', M: 'Moderate', H: 'High', P: 'Privacy' };
 const opts = <T extends string>(list: [T, string][], v: string) => list.map(([k, t]) => `<option value="${k}"${k === v ? ' selected' : ''}>${esc(t)}</option>`).join('');
@@ -96,7 +98,7 @@ function header() {
     <div class="sys"><span class="sysname">${esc(st.system.name || 'No system yet')}</span><span class="chip">${esc(baselineTitle())}</span></div>
     <div class="score" title="Readiness score"><b>${r.score}%</b> ready</div><span id="saved" class="saved" aria-live="polite"></span>`;
   const view = route().view;
-  document.querySelectorAll<HTMLAnchorElement>('#nav a').forEach((a) => a.setAttribute('aria-current', String(a.dataset.v === view || (view === 'control' && a.dataset.v === 'controls') || (view === 'evidence-item' && a.dataset.v === 'evidence') || (view === 'poam-item' && a.dataset.v === 'poam'))));
+  document.querySelectorAll<HTMLAnchorElement>('#nav a').forEach((a) => a.setAttribute('aria-current', String(a.dataset.v === view || (view === 'control' && a.dataset.v === 'controls') || (view === 'evidence-item' && a.dataset.v === 'evidence') || ((view === 'poam-item' || view === 'import') && a.dataset.v === 'poam'))));
   const b = document.getElementById('banner')!;
   b.hidden = !st.demo;
   b.innerHTML = st.demo
@@ -144,7 +146,7 @@ function render(scrollTop: boolean) {
   header();
   const views: Record<string, () => string> = {
     dashboard, controls: () => controls(''), control: () => controls(r.arg), evidence: () => evidenceList(), 'evidence-item': () => evidenceItem(r.arg),
-    poam: poamList, 'poam-item': () => poamItem(r.arg), export: exportView, system: systemView,
+    poam: poamList, 'poam-item': () => poamItem(r.arg), import: importView, export: exportView, system: systemView,
   };
   app().innerHTML = (views[r.view] || dashboard)();
   document.title = `${(NAV.find((n) => r.view.startsWith(n[0])) || ['', 'Preflight'])[1]} · Preflight`;
@@ -406,7 +408,7 @@ function poamList(): string {
   const r = readiness(cat, st);
   const list = st.poams.filter((p) => pmShow === 'all' || isOpen(p)).sort((a, b) => sevRank(a) - sevRank(b) || (a.scheduledCompletion < b.scheduledCompletion ? -1 : 1));
   return `<section class="page">
-    <div class="row between"><h1>Plan of action and milestones</h1><button class="btn" data-act="poam-new">New POA&M item</button></div>
+    <div class="row between"><h1>Plan of action and milestones</h1><div class="row wrap"><a class="btn ghost" href="#/import">Import scan results</a><button class="btn" data-act="poam-new">New POA&M item</button></div></div>
     <p class="lede">${r.openPoams.high + r.openPoams.moderate + r.openPoams.low} open: ${r.openPoams.high} high, ${r.openPoams.moderate} moderate, ${r.openPoams.low} low. ${r.overdue ? `<span class="warn">${r.overdue} overdue.</span>` : 'None overdue.'}</p>
     <div class="seg small" role="radiogroup" aria-label="Show"><label><input type="radio" name="pmshow" value="open" data-act="pmshow"${pmShow === 'open' ? ' checked' : ''}><span>Open</span></label><label><input type="radio" name="pmshow" value="all" data-act="pmshow"${pmShow === 'all' ? ' checked' : ''}><span>All, including closed and accepted</span></label></div>
     ${list.length ? `<div class="tw"><table class="tbl pm"><thead><tr><th scope="col">ID</th><th scope="col">Weakness</th><th scope="col">Control</th><th scope="col">Severity</th><th scope="col">Status</th><th scope="col">Due</th><th scope="col">Point of contact</th></tr></thead><tbody>
@@ -434,6 +436,7 @@ function poamItem(id: string): string {
     <a class="back" href="#/poam">Back to the POA&M</a>
     <h1><span class="cid">${p.id}</span> ${esc(p.title || 'New item')}</h1>
     ${isOverdue(p) ? '<p class="warn">Overdue: a milestone or the completion date has passed.</p>' : ''}
+    ${p.scan ? scanPanel(p) : ''}
     <label>Weakness<input data-p="title" value="${esc(p.title)}" placeholder="What is wrong, in one line" required></label>
     <label>Control<input data-p="controlId" value="${esc(p.controlId)}" list="ctl-ids"></label>
     <p class="hint" id="pm-ctl">${c ? `<a href="#/control/${encodeURIComponent(c.id)}">${esc(c.id)} ${esc(c.t)}</a>` : 'Not a control in the catalog.'}</p>
@@ -456,6 +459,59 @@ function poamItem(id: string): string {
     <label class="block">Residual risk ${p.status === 'risk-accepted' ? '<span class="warn">required for a risk acceptance</span>' : '<span class="hint">what risk remains, for the authorizing official</span>'}<textarea data-p="residualRisk" rows="2">${esc(p.residualRisk)}</textarea></label>
     <button class="btn small danger" data-act="del-poam" data-v="${p.id}">Delete this item</button>
   </section>`;
+}
+
+function scanPanel(p: PoamItem): string {
+  const sc = p.scan!;
+  const others = sc.controls.filter((c) => c !== p.controlId);
+  return `<div class="note scanfrom"><p><b>From a ${esc(sc.tool)} scan.</b> Check <code>${esc(sc.check)}</code>, last seen ${fmtDate(sc.lastSeen)}. A later scan of the same check updates this item, and closes it when the check passes.</p>
+    ${sc.resources.length ? `<details><summary>${sc.resources.length} affected ${sc.resources.length === 1 ? 'resource' : 'resources'}</summary><ul class="res">${sc.resources.map((r) => `<li>${esc(r)}</li>`).join('')}</ul></details>` : ''}
+    ${others.length ? `<details><summary>Also maps to ${others.length} other ${others.length === 1 ? 'control' : 'controls'}</summary><p class="ids">${others.map((c) => `<a href="#/control/${encodeURIComponent(c)}">${esc(c)}</a>`).join(' ')}</p></details>` : ''}</div>`;
+}
+
+// ---------- scan import ----------
+const n = (k: number, one: string, many = one + 's') => `${k} ${k === 1 ? one : many}`;
+let plan: ImportPlan | null = null;
+let planFile: File | null = null;
+function importView(): string {
+  const SEVN: Record<string, string> = { high: 'High', moderate: 'Moderate', low: 'Low' };
+  const head = `<section class="page">
+    <a class="back" href="#/poam">Back to the POA&M</a>
+    <h1>Import scan results</h1>
+    <p class="lede">Turn scanner results into POA&M items. Preflight reads <b>Prowler</b> JSON output (<code>prowler aws -M json-ocsf</code>) and <b>AWS Security Hub</b> findings (<code>aws securityhub get-findings</code>), which include AWS Config rule results. Each failing check becomes one POA&M item, mapped to the NIST controls the tool assigns it.</p>
+    <div class="row wrap"><label class="btn file">Choose a scan file<input type="file" accept=".json,application/json" data-act="scan-file"></label>${st.demo ? '<button class="btn ghost" data-act="scan-sample">Try a sample Prowler scan</button>' : ''}</div>
+    <p class="hint">The file is read in this browser. Nothing is uploaded.</p>`;
+  if (!plan) return head + '</section>';
+  const P = plan;
+  const created = P.failing.filter((c) => !c.existing).length,
+    updated = P.failing.length - created;
+  return `${head}
+    <section class="panel preview" aria-live="polite">
+      <h2>${esc(P.fileName)}</h2>
+      <p>${TOOL_NAME[P.tool]}: ${n(P.findings, 'finding')} on ${n(P.failing.length + P.passing.length, 'check')}. <b>${n(P.failing.length, 'check')} failed</b>, ${P.passing.length} passed.${P.unmapped ? ` Skipped ${n(P.unmapped, 'finding')} with no NIST SP 800-53 mapping.` : ''}${P.skipped ? ` Skipped ${n(P.skipped, 'finding')} that ${P.skipped === 1 ? 'was' : 'were'} archived, suppressed, or not pass or fail.` : ''}</p>
+      ${P.unknownIds.length ? `<p class="hint">The tool maps some checks to ${P.unknownIds.join(', ')}, which ${P.unknownIds.length === 1 ? 'is' : 'are'} not in SP 800-53 Rev. 5 (withdrawn or renamed). Those mappings were left out.</p>` : ''}
+      ${P.failing.length ? `<div class="tw"><table class="tbl"><thead><tr><th scope="col">Failed check</th><th scope="col">Severity</th><th scope="col">Resources</th><th scope="col">Control</th><th scope="col">POA&M</th></tr></thead><tbody>
+      ${P.failing.map((c) => `<tr><td>${esc(c.title)}<div class="hint"><code>${esc(c.check)}</code>, maps to ${c.controls.length} ${c.controls.length === 1 ? 'control' : 'controls'}</div></td><td><span class="sev ${c.severity}">${SEVN[c.severity]}</span></td><td class="num">${c.failed.length}</td><td><a href="#/control/${encodeURIComponent(c.control)}">${esc(c.control)}</a></td><td>${c.existing ? `updates <a href="#/poam/${c.existing}">${c.existing}</a>` : 'new item'}</td></tr>`).join('')}
+      </tbody></table></div>` : '<p class="good">Every check passed.</p>'}
+      <form data-form="import" class="choices">
+        <label class="check"><input type="checkbox" name="poams"${P.failing.length ? ' checked' : ' disabled'}> ${created ? `Create ${n(created, 'POA&M item')}` : 'Create no new items'}${updated ? ` and update ${updated} already open` : ''}. Due dates follow common continuous-monitoring windows: 30 days for high, 90 for moderate, 180 for low.</label>
+        <label class="check"><input type="checkbox" name="close"${P.close.length ? ' checked' : ' disabled'}> Close ${P.close.length} open ${P.close.length === 1 ? 'item' : 'items'} whose check now passes${P.close.length ? `: ${P.close.join(', ')}` : ''}</label>
+        <label class="check"><input type="checkbox" name="downgrade"${P.downgrade.length ? ' checked' : ' disabled'}> Mark ${P.downgrade.length} satisfied ${P.downgrade.length === 1 ? 'control' : 'controls'} partially satisfied, because a check for ${P.downgrade.length === 1 ? 'it' : 'them'} failed${P.downgrade.length ? `: ${P.downgrade.join(', ')}` : ''}</label>
+        <label class="check"><input type="checkbox" name="evidence" checked> Keep the scan file as evidence, with its SHA-256 fingerprint, for the ${new Set([...P.failing, ...P.passing].map((c) => c.control)).size} controls its checks cover</label>
+        <div class="row wrap"><button class="btn">Import</button><button type="button" class="btn ghost" data-act="scan-cancel">Cancel</button></div>
+      </form>
+    </section>
+  </section>`;
+}
+async function loadScan(file: File) {
+  try {
+    plan = planImport(cat, st, parseScan(await file.text()), file.name);
+    planFile = file;
+  } catch (e: any) {
+    plan = null;
+    toast(e.message || String(e), 'warn');
+  }
+  render(false);
 }
 
 // ---------- export ----------
@@ -607,6 +663,16 @@ async function onClick(ev: MouseEvent) {
       out.innerHTML = h === e.sha256 ? `<p class="good">The stored file still matches its fingerprint from ${fmtDate(e.addedAt)}.</p>` : `<p class="warn">The stored file does not match its recorded fingerprint. It is now ${h}.</p>`;
       break;
     }
+    case 'scan-sample': {
+      const text = document.getElementById('sample-scan')?.textContent || '[]';
+      await loadScan(new File([text], 'bayview-prowler-scan.ocsf.json', { type: 'application/json' }));
+      break;
+    }
+    case 'scan-cancel':
+      plan = null;
+      planFile = null;
+      render(false);
+      break;
     case 'x-ssp-md':
       download(`${fileStem(st)}-ssp.md`, sspMarkdown(cat, st), 'text/markdown');
       break;
@@ -713,6 +779,12 @@ async function onChange(ev: Event) {
       el.value = '';
       return;
     }
+    case 'scan-file': {
+      const f = el.files && el.files[0];
+      el.value = '';
+      if (f) await loadScan(f);
+      return;
+    }
     case 'pmshow':
       pmShow = el.value as 'open' | 'all';
       render(false);
@@ -757,6 +829,24 @@ document.addEventListener('submit', async (ev) => {
       toast('System saved.');
       render(false);
     }
+  }
+  if (form.dataset.form === 'import' && plan) {
+    const P = plan,
+      file = planFile;
+    const res = applyImport(st, P, { poams: fd.get('poams') === 'on', close: fd.get('close') === 'on', downgrade: fd.get('downgrade') === 'on' });
+    let ev = '';
+    if (fd.get('evidence') === 'on' && file) {
+      const controls = [...new Set([...P.failing, ...P.passing].map((c) => c.control))];
+      const e = await addEvidence(file, { title: `${TOOL_NAME[P.tool]} scan, ${fmtDate(today())}`, type: 'scan-report', captured: today(), controls, notes: `${P.failing.length} checks failed, ${P.passing.length} passed.` });
+      ev = ` Scan kept as ${e.id}.`;
+    }
+    plan = null;
+    planFile = null;
+    save();
+    const parts = [res.created.length && `${n(res.created.length, 'POA&M item')} created`, res.updated.length && `${res.updated.length} updated`, res.closed.length && `${res.closed.length} closed`, res.downgraded.length && `${n(res.downgraded.length, 'control')} marked partial`].filter(Boolean);
+    toast(`Imported. ${parts.join(', ') || 'Nothing changed'}.${ev}`);
+    go('#/poam');
+    return;
   }
   if (form.dataset.form === 'add-ev') {
     const f = (form.elements.namedItem('file') as HTMLInputElement).files?.[0];

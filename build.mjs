@@ -30,6 +30,7 @@ const tpl = fs.readFileSync(path.join(SRC, 'index.template.html'), 'utf8');
 const html = tpl
   .replace('/*CSS*/', () => fs.readFileSync(path.join(SRC, 'style.css'), 'utf8'))
   .replace('/*CATALOG*/', () => catalog)
+  .replace('/*SAMPLE_SCAN*/', () => JSON.stringify(JSON.parse(fs.readFileSync('src/data/sample-scan.json', 'utf8'))).replace(/<\//g, '<\\/'))
   .replace('/*JS*/', () => '\n' + js + '\n');
 fs.mkdirSync('dist/site', { recursive: true });
 fs.writeFileSync('dist/preflight.html', html);

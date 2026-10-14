@@ -1,0 +1,1623 @@
+[
+ {
+  "message": "User svc-reporting has an access key that has not been used in more than 45 days.",
+  "metadata": {
+   "event_code": "iam_user_accesskey_unused",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Medium",
+  "status": "New",
+  "status_code": "FAIL",
+  "status_detail": "User svc-reporting has an access key that has not been used in more than 45 days.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_24",
+     "ac_2_1",
+     "ac_2_3",
+     "ac_2_3_a",
+     "ac_2_3_b",
+     "ac_2_3_c",
+     "ac_2_3_d",
+     "ac_2_6",
+     "ac_2_g",
+     "ac_2_j",
+     "ac_3",
+     "ac_3_12_a",
+     "ac_3_13",
+     "ac_3_15_a",
+     "ac_3_15_b",
+     "ac_3_3",
+     "ac_3_3_a",
+     "ac_3_3_b_1",
+     "ac_3_3_b_2",
+     "ac_3_3_b_3",
+     "ac_3_3_b_4",
+     "ac_3_3_b_5",
+     "ac_3_3_c",
+     "ac_3_4",
+     "ac_3_4_a",
+     "ac_3_4_b",
+     "ac_3_4_c",
+     "ac_3_4_d",
+     "ac_3_4_e",
+     "ac_3_7",
+     "ac_3_8",
+     "ac_4_28",
+     "ac_6",
+     "cm_5_1_a",
+     "cm_6_a",
+     "cm_9_b",
+     "mp_2",
+     "sc_23_3"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "IAM user does not have unused access keys older than 45 days",
+   "desc": "**IAM users** are evaluated for **active access keys** whose `last-used` timestamp exceeds `max_unused_access_keys_days` (default `45`). Users without access keys, or whose keys were used within this window, are reported separately.",
+   "uid": "prowler-aws-iam_user_accesskey_unused-111122223333-us-gov-west-1-svc-reporting",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:iam::111122223333:user/svc-reporting",
+    "name": "svc-reporting",
+    "region": "us-gov-west-1",
+    "type": "AwsIamUser"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Disable or delete **unused access keys** promptly and prefer **IAM roles** with temporary credentials. Enforce **least privilege**, rotation, and time-bounded access. Monitor `last-used` metadata and automate deactivation of idle keys. Use federation/SSO to avoid long-lived user keys."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "User jdoe-admin has an access key that has not been used in more than 45 days.",
+  "metadata": {
+   "event_code": "iam_user_accesskey_unused",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Medium",
+  "status": "New",
+  "status_code": "FAIL",
+  "status_detail": "User jdoe-admin has an access key that has not been used in more than 45 days.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_24",
+     "ac_2_1",
+     "ac_2_3",
+     "ac_2_3_a",
+     "ac_2_3_b",
+     "ac_2_3_c",
+     "ac_2_3_d",
+     "ac_2_6",
+     "ac_2_g",
+     "ac_2_j",
+     "ac_3",
+     "ac_3_12_a",
+     "ac_3_13",
+     "ac_3_15_a",
+     "ac_3_15_b",
+     "ac_3_3",
+     "ac_3_3_a",
+     "ac_3_3_b_1",
+     "ac_3_3_b_2",
+     "ac_3_3_b_3",
+     "ac_3_3_b_4",
+     "ac_3_3_b_5",
+     "ac_3_3_c",
+     "ac_3_4",
+     "ac_3_4_a",
+     "ac_3_4_b",
+     "ac_3_4_c",
+     "ac_3_4_d",
+     "ac_3_4_e",
+     "ac_3_7",
+     "ac_3_8",
+     "ac_4_28",
+     "ac_6",
+     "cm_5_1_a",
+     "cm_6_a",
+     "cm_9_b",
+     "mp_2",
+     "sc_23_3"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "IAM user does not have unused access keys older than 45 days",
+   "desc": "**IAM users** are evaluated for **active access keys** whose `last-used` timestamp exceeds `max_unused_access_keys_days` (default `45`). Users without access keys, or whose keys were used within this window, are reported separately.",
+   "uid": "prowler-aws-iam_user_accesskey_unused-111122223333-us-gov-west-1-jdoe-admin",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:iam::111122223333:user/jdoe-admin",
+    "name": "jdoe-admin",
+    "region": "us-gov-west-1",
+    "type": "AwsIamUser"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Disable or delete **unused access keys** promptly and prefer **IAM roles** with temporary credentials. Enforce **least privilege**, rotation, and time-bounded access. Monitor `last-used` metadata and automate deactivation of idle keys. Use federation/SSO to avoid long-lived user keys."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "Instance bgp-batch-worker-1 does not require IMDSv2.",
+  "metadata": {
+   "event_code": "ec2_instance_imdsv2_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "FAIL",
+  "status_detail": "Instance bgp-batch-worker-1 does not require IMDSv2.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_24",
+     "ac_2_6",
+     "ac_3",
+     "ac_3_12_a",
+     "ac_3_13",
+     "ac_3_15_a",
+     "ac_3_15_b",
+     "ac_3_3",
+     "ac_3_3_a",
+     "ac_3_3_b_1",
+     "ac_3_3_b_2",
+     "ac_3_3_b_3",
+     "ac_3_3_b_4",
+     "ac_3_3_b_5",
+     "ac_3_3_c",
+     "ac_3_4",
+     "ac_3_4_a",
+     "ac_3_4_b",
+     "ac_3_4_c",
+     "ac_3_4_d",
+     "ac_3_4_e",
+     "ac_3_7",
+     "ac_3_8",
+     "ac_4_28",
+     "ac_6",
+     "cm_5_1_a",
+     "mp_2",
+     "sc_23_3"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "EC2 instance requires IMDSv2 or has the instance metadata service disabled",
+   "desc": "**EC2 instances** are evaluated for **IMDSv2 enforcement**: metadata endpoint enabled with `http_tokens: required`, or metadata service fully disabled (`http_endpoint: disabled`).",
+   "uid": "prowler-aws-ec2_instance_imdsv2_enabled-111122223333-us-gov-west-1-bgp-batch-worker-1",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:ec2:us-gov-west-1:111122223333:instance/i-0b19e2c4d7a1f3",
+    "name": "bgp-batch-worker-1",
+    "region": "us-gov-west-1",
+    "type": "AwsEc2Instance"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Apply defense in depth:\n- Require **IMDSv2** tokens on all instances (`http_tokens: required`)\n- Disable metadata where not needed (`http_endpoint: disabled`)\n- Minimize hop limit to `1` when feasible\n- Update SDKs/apps for IMDSv2\n- Restrict instance profile permissions (least privilege)\n- Block metadata access from untrusted workloads"
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "Instance bgp-batch-worker-2 does not require IMDSv2.",
+  "metadata": {
+   "event_code": "ec2_instance_imdsv2_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "FAIL",
+  "status_detail": "Instance bgp-batch-worker-2 does not require IMDSv2.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_24",
+     "ac_2_6",
+     "ac_3",
+     "ac_3_12_a",
+     "ac_3_13",
+     "ac_3_15_a",
+     "ac_3_15_b",
+     "ac_3_3",
+     "ac_3_3_a",
+     "ac_3_3_b_1",
+     "ac_3_3_b_2",
+     "ac_3_3_b_3",
+     "ac_3_3_b_4",
+     "ac_3_3_b_5",
+     "ac_3_3_c",
+     "ac_3_4",
+     "ac_3_4_a",
+     "ac_3_4_b",
+     "ac_3_4_c",
+     "ac_3_4_d",
+     "ac_3_4_e",
+     "ac_3_7",
+     "ac_3_8",
+     "ac_4_28",
+     "ac_6",
+     "cm_5_1_a",
+     "mp_2",
+     "sc_23_3"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "EC2 instance requires IMDSv2 or has the instance metadata service disabled",
+   "desc": "**EC2 instances** are evaluated for **IMDSv2 enforcement**: metadata endpoint enabled with `http_tokens: required`, or metadata service fully disabled (`http_endpoint: disabled`).",
+   "uid": "prowler-aws-ec2_instance_imdsv2_enabled-111122223333-us-gov-west-1-bgp-batch-worker-2",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:ec2:us-gov-west-1:111122223333:instance/i-0b29e2c4d7a1f3",
+    "name": "bgp-batch-worker-2",
+    "region": "us-gov-west-1",
+    "type": "AwsEc2Instance"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Apply defense in depth:\n- Require **IMDSv2** tokens on all instances (`http_tokens: required`)\n- Disable metadata where not needed (`http_endpoint: disabled`)\n- Minimize hop limit to `1` when feasible\n- Update SDKs/apps for IMDSv2\n- Restrict instance profile permissions (least privilege)\n- Block metadata access from untrusted workloads"
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "Instance bgp-batch-worker-3 does not require IMDSv2.",
+  "metadata": {
+   "event_code": "ec2_instance_imdsv2_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "FAIL",
+  "status_detail": "Instance bgp-batch-worker-3 does not require IMDSv2.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_24",
+     "ac_2_6",
+     "ac_3",
+     "ac_3_12_a",
+     "ac_3_13",
+     "ac_3_15_a",
+     "ac_3_15_b",
+     "ac_3_3",
+     "ac_3_3_a",
+     "ac_3_3_b_1",
+     "ac_3_3_b_2",
+     "ac_3_3_b_3",
+     "ac_3_3_b_4",
+     "ac_3_3_b_5",
+     "ac_3_3_c",
+     "ac_3_4",
+     "ac_3_4_a",
+     "ac_3_4_b",
+     "ac_3_4_c",
+     "ac_3_4_d",
+     "ac_3_4_e",
+     "ac_3_7",
+     "ac_3_8",
+     "ac_4_28",
+     "ac_6",
+     "cm_5_1_a",
+     "mp_2",
+     "sc_23_3"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "EC2 instance requires IMDSv2 or has the instance metadata service disabled",
+   "desc": "**EC2 instances** are evaluated for **IMDSv2 enforcement**: metadata endpoint enabled with `http_tokens: required`, or metadata service fully disabled (`http_endpoint: disabled`).",
+   "uid": "prowler-aws-ec2_instance_imdsv2_enabled-111122223333-us-gov-west-1-bgp-batch-worker-3",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:ec2:us-gov-west-1:111122223333:instance/i-0b39e2c4d7a1f3",
+    "name": "bgp-batch-worker-3",
+    "region": "us-gov-west-1",
+    "type": "AwsEc2Instance"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Apply defense in depth:\n- Require **IMDSv2** tokens on all instances (`http_tokens: required`)\n- Disable metadata where not needed (`http_endpoint: disabled`)\n- Minimize hop limit to `1` when feasible\n- Update SDKs/apps for IMDSv2\n- Restrict instance profile permissions (least privilege)\n- Block metadata access from untrusted workloads"
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "Security group bgp-legacy-bastion allows SSH (TCP 22) from 0.0.0.0/0.",
+  "metadata": {
+   "event_code": "ec2_securitygroup_allow_ingress_from_internet_to_tcp_port_22",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "FAIL",
+  "status_detail": "Security group bgp-legacy-bastion allows SSH (TCP 22) from 0.0.0.0/0.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_17_1",
+     "ac_17_10",
+     "ac_17_9",
+     "ac_17_b",
+     "cm_9_b",
+     "sc_7_11",
+     "sc_7_12",
+     "sc_7_16",
+     "sc_7_21",
+     "sc_7_24_b",
+     "sc_7_25",
+     "sc_7_26",
+     "sc_7_27",
+     "sc_7_28",
+     "sc_7_7",
+     "sc_7_a",
+     "sc_7_c"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "Security group does not allow ingress from 0.0.0.0/0 or ::/0 to TCP port 22 (SSH)",
+   "desc": "**EC2 security groups** are assessed for **inbound SSH exposure** by locating ingress rules that allow `TCP 22` from the Internet (`0.0.0.0/0` or `::/0`).\n\nOnly groups in use are considered; sets already flagged for all-port exposure are not repeated.",
+   "uid": "prowler-aws-ec2_securitygroup_allow_ingress_from_internet_to_tcp_port_22-111122223333-us-gov-west-1-bgp-legacy-bastion",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:ec2:us-gov-west-1:111122223333:security-group/sg-04c1d2e3f4a5b6c7d",
+    "name": "bgp-legacy-bastion",
+    "region": "us-gov-west-1",
+    "type": "AwsEc2SecurityGroup"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Apply **least privilege** to SSH:\n- Disallow `0.0.0.0/0` and `::/0`; allow only trusted IPs or VPN ranges\n- Prefer **private access** via bastion hosts or AWS Systems Manager Session Manager\n- Enforce **key-based auth**, disable passwords, rotate keys\n- Add **network segmentation** and monitoring for **defense in depth**"
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "KMS key bgp-attachments-key does not have automatic rotation enabled.",
+  "metadata": {
+   "event_code": "kms_cmk_rotation_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "FAIL",
+  "status_detail": "KMS key bgp-attachments-key does not have automatic rotation enabled.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "cm_6_a",
+     "cm_9_b",
+     "sa_9_6",
+     "sc_12",
+     "sc_12_2",
+     "sc_12_6"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "KMS customer-managed symmetric CMK has automatic rotation enabled",
+   "desc": "**Customer-managed KMS symmetric keys** in the `Enabled` state are evaluated to confirm `automatic rotation` of key material is configured",
+   "uid": "prowler-aws-kms_cmk_rotation_enabled-111122223333-us-gov-west-1-bgp-attachments-key",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:kms:us-gov-west-1:111122223333:key/7f3a1c2e-0d4b-4e8f-9a6b-5c2d1e0f9a8b",
+    "name": "bgp-attachments-key",
+    "region": "us-gov-west-1",
+    "type": "AwsKmsKey"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enable **automatic rotation** on customer-managed symmetric KMS keys and choose a rotation period that meets policy. Enforce **least privilege** and **separation of duties** for key administration versus usage. Monitor key lifecycle events and use on-demand rotation when compromise is suspected."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "VPC bgp-prod-vpc does not have flow logs enabled.",
+  "metadata": {
+   "event_code": "vpc_flow_logs_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Medium",
+  "status": "New",
+  "status_code": "FAIL",
+  "status_detail": "VPC bgp-prod-vpc does not have flow logs enabled.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_4_26",
+     "au_12_1",
+     "au_12_2",
+     "au_12_3",
+     "au_12_4",
+     "au_12_a",
+     "au_12_c",
+     "au_14_3",
+     "au_14_a",
+     "au_14_b",
+     "au_2_b",
+     "au_3_a",
+     "au_3_b",
+     "au_3_c",
+     "au_3_d",
+     "au_3_e",
+     "au_6_3",
+     "au_6_4",
+     "au_6_6",
+     "au_6_9",
+     "au_8_b",
+     "ca_7_b",
+     "cm_5_1_b",
+     "cm_6_a",
+     "cm_9_b",
+     "ia_3_3_b",
+     "ma_4_1_a",
+     "pm_14_a_1",
+     "pm_14_b",
+     "pm_31",
+     "si_4_17",
+     "si_7_8"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "VPC flow logs are enabled",
+   "desc": "**AWS VPCs** have **Flow Logs** configured to capture IP traffic for their network interfaces and deliver records to a logging destination.\n\nVPCs lacking an active flow log configuration are highlighted.",
+   "uid": "prowler-aws-vpc_flow_logs_enabled-111122223333-us-gov-west-1-bgp-prod-vpc",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:ec2:us-gov-west-1:111122223333:vpc/vpc-0a1b2c3d4e5f6a7b8",
+    "name": "bgp-prod-vpc",
+    "region": "us-gov-west-1",
+    "type": "AwsEc2Vpc"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enable **VPC Flow Logs** for all VPCs to provide baseline telemetry.\nPrefer capturing at least `REJECT` and, for sensitive networks, `ALL`. Send logs to a centralized, access-controlled destination with retention. Apply **least privilege** to writers/readers and integrate with monitoring for **defense in depth**."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "Trail bgp-app-trail does not have log file validation enabled.",
+  "metadata": {
+   "event_code": "cloudtrail_log_file_validation_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Medium",
+  "status": "New",
+  "status_code": "FAIL",
+  "status_detail": "Trail bgp-app-trail does not have log file validation enabled.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "au_9_a",
+     "cm_6_a",
+     "cm_9_b",
+     "pm_11_b",
+     "pm_17_b",
+     "sa_10_1",
+     "sa_1_1",
+     "sc_16_1",
+     "si_1_a_2",
+     "si_4_d",
+     "si_7_1",
+     "si_7_3",
+     "si_7_7",
+     "si_7_a"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "CloudTrail trail has log file validation enabled",
+   "desc": "**AWS CloudTrail trails** are evaluated for **log file integrity validation** being enabled (`LogFileValidationEnabled`).\n\nWhen enabled, CloudTrail generates signed digest files to verify that S3-delivered log files remain unchanged.",
+   "uid": "prowler-aws-cloudtrail_log_file_validation_enabled-111122223333-us-gov-west-1-bgp-app-trail",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:cloudtrail:us-gov-west-1:111122223333:trail/bgp-app-trail",
+    "name": "bgp-app-trail",
+    "region": "us-gov-west-1",
+    "type": "AwsCloudTrailTrail"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enable **log file integrity validation** on all trails (`LogFileValidationEnabled=true`).\n\nEnforce **least privilege** on the logs bucket, retain and protect digest files (e.g., S3 Object Lock/MFA Delete), and monitor validation results to support **defense in depth**."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "<root_account> passed: Root account has MFA enabled.",
+  "metadata": {
+   "event_code": "iam_root_mfa_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Critical",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "<root_account> passed: Root account has MFA enabled.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_24",
+     "ac_2_1",
+     "ac_3_12_a",
+     "ac_3_13",
+     "ac_3_15_a",
+     "ac_3_15_b",
+     "ac_3_2",
+     "ac_3_3",
+     "ac_3_3_a",
+     "ac_3_3_b_1",
+     "ac_3_3_b_2",
+     "ac_3_3_b_3",
+     "ac_3_3_b_4",
+     "ac_3_3_b_5",
+     "ac_3_3_c",
+     "ac_3_4",
+     "ac_3_4_a",
+     "ac_3_4_b",
+     "ac_3_4_c",
+     "ac_3_4_d",
+     "ac_3_4_e",
+     "ac_3_8",
+     "ac_4_28",
+     "ac_7_4",
+     "ac_7_4_a",
+     "cm_6_a",
+     "cm_9_b",
+     "ia_2_1",
+     "ia_2_2",
+     "ia_2_6",
+     "ia_2_6_a",
+     "ia_2_8",
+     "sc_23_3"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "Root account has MFA enabled",
+   "desc": "**AWS root user** with active credentials is assessed for **MFA activation**. The evaluation considers whether the root identity has a password or access keys and whether **MFA is enabled**.\n\n*If centralized root access is enabled in Organizations, the presence of individual root credentials is also noted.*",
+   "uid": "prowler-aws-iam_root_mfa_enabled-111122223333-us-gov-west-1-<root_account>",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:iam::111122223333:root",
+    "name": "<root_account>",
+    "region": "us-gov-west-1",
+    "type": "AwsIamUser"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enable **MFA** for the root user, preferably **hardware-based** or a dedicated, managed device. Remove root access keys and avoid using root for daily tasks. Apply **least privilege** with IAM Identity Center for admins, and use Organizations to **centralize root access** and eliminate long-lived root credentials."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "mlee passed: IAM user has MFA enabled for console access or no console password is set.",
+  "metadata": {
+   "event_code": "iam_user_mfa_enabled_console_access",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "mlee passed: IAM user has MFA enabled for console access or no console password is set.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_24",
+     "ac_2_1",
+     "ac_3_12_a",
+     "ac_3_13",
+     "ac_3_15_a",
+     "ac_3_15_b",
+     "ac_3_2",
+     "ac_3_3",
+     "ac_3_3_a",
+     "ac_3_3_b_1",
+     "ac_3_3_b_2",
+     "ac_3_3_b_3",
+     "ac_3_3_b_4",
+     "ac_3_3_b_5",
+     "ac_3_3_c",
+     "ac_3_4",
+     "ac_3_4_a",
+     "ac_3_4_b",
+     "ac_3_4_c",
+     "ac_3_4_d",
+     "ac_3_4_e",
+     "ac_3_8",
+     "ac_4_28",
+     "ac_7_4",
+     "ac_7_4_a",
+     "cm_5_1_a",
+     "cm_6_a",
+     "cm_9_b",
+     "ia_2_1",
+     "ia_2_2",
+     "ia_2_6",
+     "ia_2_6_a",
+     "ia_2_8",
+     "sc_23_3"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "IAM user has MFA enabled for console access or no console password is set",
+   "desc": "**IAM users** that have a console password are expected to have **multi-factor authentication** enabled. The evaluation identifies users who can sign in to the AWS Management Console but do not have an active MFA device associated.",
+   "uid": "prowler-aws-iam_user_mfa_enabled_console_access-111122223333-us-gov-west-1-mlee",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:iam::111122223333:user/mlee",
+    "name": "mlee",
+    "region": "us-gov-west-1",
+    "type": "AwsIamUser"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enforce **MFA** for all console-capable IAM users; prefer **phishing-resistant** authenticators (FIDO2/security keys) and register backups. Remove console passwords for users that don't need them and favor **federation/SSO**. Apply least privilege and require MFA for sensitive actions to prevent unauthorized changes."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "druiz passed: IAM user has MFA enabled for console access or no console password is set.",
+  "metadata": {
+   "event_code": "iam_user_mfa_enabled_console_access",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "druiz passed: IAM user has MFA enabled for console access or no console password is set.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_24",
+     "ac_2_1",
+     "ac_3_12_a",
+     "ac_3_13",
+     "ac_3_15_a",
+     "ac_3_15_b",
+     "ac_3_2",
+     "ac_3_3",
+     "ac_3_3_a",
+     "ac_3_3_b_1",
+     "ac_3_3_b_2",
+     "ac_3_3_b_3",
+     "ac_3_3_b_4",
+     "ac_3_3_b_5",
+     "ac_3_3_c",
+     "ac_3_4",
+     "ac_3_4_a",
+     "ac_3_4_b",
+     "ac_3_4_c",
+     "ac_3_4_d",
+     "ac_3_4_e",
+     "ac_3_8",
+     "ac_4_28",
+     "ac_7_4",
+     "ac_7_4_a",
+     "cm_5_1_a",
+     "cm_6_a",
+     "cm_9_b",
+     "ia_2_1",
+     "ia_2_2",
+     "ia_2_6",
+     "ia_2_6_a",
+     "ia_2_8",
+     "sc_23_3"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "IAM user has MFA enabled for console access or no console password is set",
+   "desc": "**IAM users** that have a console password are expected to have **multi-factor authentication** enabled. The evaluation identifies users who can sign in to the AWS Management Console but do not have an active MFA device associated.",
+   "uid": "prowler-aws-iam_user_mfa_enabled_console_access-111122223333-us-gov-west-1-druiz",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:iam::111122223333:user/druiz",
+    "name": "druiz",
+    "region": "us-gov-west-1",
+    "type": "AwsIamUser"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enforce **MFA** for all console-capable IAM users; prefer **phishing-resistant** authenticators (FIDO2/security keys) and register backups. Remove console passwords for users that don't need them and favor **federation/SSO**. Apply least privilege and require MFA for sensitive actions to prevent unauthorized changes."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "password-policy passed: IAM password policy requires passwords to be at least 14 characters long.",
+  "metadata": {
+   "event_code": "iam_password_policy_minimum_length_14",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Medium",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "password-policy passed: IAM password policy requires passwords to be at least 14 characters long.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_24",
+     "ac_2_1",
+     "ac_2_3",
+     "ac_2_3_a",
+     "ac_2_3_b",
+     "ac_2_3_c",
+     "ac_2_3_d",
+     "ac_2_d_1",
+     "ac_3_12_a",
+     "ac_3_13",
+     "ac_3_15_a",
+     "ac_3_15_b",
+     "ac_3_3",
+     "ac_3_3_a",
+     "ac_3_3_b_1",
+     "ac_3_3_b_2",
+     "ac_3_3_b_3",
+     "ac_3_3_b_4",
+     "ac_3_3_b_5",
+     "ac_3_3_c",
+     "ac_3_4",
+     "ac_3_4_a",
+     "ac_3_4_b",
+     "ac_3_4_c",
+     "ac_3_4_d",
+     "ac_3_4_e",
+     "ac_3_8",
+     "ac_4_28",
+     "ac_7_4",
+     "ac_7_4_a",
+     "cm_12_b",
+     "cm_5_1_a",
+     "cm_6_a",
+     "cm_9_b",
+     "ia_4_d",
+     "ia_5",
+     "ia_5_18_a",
+     "ia_5_18_b",
+     "ia_5_1_f",
+     "ia_5_1_g",
+     "ia_5_1_h",
+     "ia_5_b",
+     "ia_5_c",
+     "ia_5_d",
+     "ia_5_f",
+     "ia_5_h",
+     "ia_8_2_b",
+     "ma_4_c",
+     "sc_23_3"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "IAM password policy requires passwords to be at least 14 characters long",
+   "desc": "**IAM password policy** is assessed for the **minimum password length** setting, confirming it meets `>= 14` characters for IAM console users.",
+   "uid": "prowler-aws-iam_password_policy_minimum_length_14-111122223333-us-gov-west-1-password-policy",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:iam::111122223333:password-policy",
+    "name": "password-policy",
+    "region": "us-gov-west-1",
+    "type": "AwsIamPolicy"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Set the **minimum password length** to `>= 14` (prefer `16+`).\n- Require mixed character types and prevent reuse\n- Enforce **MFA** for all console users\n- Prefer SSO over local IAM users\n- Apply least privilege and monitor authentication events"
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "org-trail passed: Region has at least one CloudTrail trail logging.",
+  "metadata": {
+   "event_code": "cloudtrail_multi_region_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "org-trail passed: Region has at least one CloudTrail trail logging.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_2_4",
+     "ac_3_1",
+     "ac_3_10",
+     "ac_4_26",
+     "ac_6_9",
+     "au_10",
+     "au_12_1",
+     "au_12_2",
+     "au_12_3",
+     "au_12_4",
+     "au_12_a",
+     "au_12_c",
+     "au_14_3",
+     "au_14_a",
+     "au_14_b",
+     "au_2_b",
+     "au_3_1",
+     "au_3_a",
+     "au_3_b",
+     "au_3_c",
+     "au_3_d",
+     "au_3_e",
+     "au_3_f",
+     "au_6_3",
+     "au_6_4",
+     "au_6_6",
+     "au_6_9",
+     "au_8_b",
+     "ca_7_b",
+     "cm_5_1_b",
+     "cm_6_a",
+     "cm_9_b",
+     "ia_3_3_b",
+     "ma_4_1_a",
+     "pm_14_a_1",
+     "pm_14_b",
+     "pm_31",
+     "sc_7_9_b",
+     "si_10_1_c",
+     "si_1_1_c",
+     "si_3_8_b",
+     "si_4_17",
+     "si_4_2",
+     "si_4_20",
+     "si_7_8"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "Region has at least one CloudTrail trail logging",
+   "desc": "**AWS CloudTrail** has at least one trail with `logging` enabled in every region. A **multi-region trail** or a regional trail counts for coverage in that region.",
+   "uid": "prowler-aws-cloudtrail_multi_region_enabled-111122223333-us-gov-west-1-org-trail",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:cloudtrail:us-gov-west-1:111122223333:trail/org-trail",
+    "name": "org-trail",
+    "region": "us-gov-west-1",
+    "type": "AwsCloudTrailTrail"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Use a **multi-region CloudTrail trail** or per-region trails so `logging` is active in every region, including unused ones.\n\nCentralize logs, enforce **least privilege** to log stores, and add **defense-in-depth** with encryption, integrity validation, and retention. Continuously monitor trail health to catch gaps."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "org-trail passed: CloudTrail trail logs are encrypted at rest with a KMS key.",
+  "metadata": {
+   "event_code": "cloudtrail_kms_encryption_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Medium",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "org-trail passed: CloudTrail trail logs are encrypted at rest with a KMS key.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "au_9_3",
+     "cm_6_a",
+     "cm_9_b",
+     "cp_9_d",
+     "sc_13_a",
+     "sc_28_1",
+     "sc_8_3",
+     "sc_8_4",
+     "si_19_4"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "CloudTrail trail logs are encrypted at rest with a KMS key",
+   "desc": "**AWS CloudTrail trails** are evaluated for use of **SSE-KMS** with a customer-managed KMS key to encrypt delivered log files at rest in S3. Trails without a configured KMS key are identified. *Applies to single-Region and multi-Region trails.*",
+   "uid": "prowler-aws-cloudtrail_kms_encryption_enabled-111122223333-us-gov-west-1-org-trail",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:cloudtrail:us-gov-west-1:111122223333:trail/org-trail",
+    "name": "org-trail",
+    "region": "us-gov-west-1",
+    "type": "AwsCloudTrailTrail"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enable **SSE-KMS** on every trail using a **customer-managed KMS key**. Apply **least privilege** so only authorized roles can `Decrypt`, and enforce **separation of duties** between key admins and log readers. Rotate keys and monitor key usage to provide **defense in depth** for CloudTrail data."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "bgp-prod passed: RDS DB instance storage is encrypted at rest.",
+  "metadata": {
+   "event_code": "rds_instance_storage_encrypted",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "bgp-prod passed: RDS DB instance storage is encrypted at rest.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "au_9_3",
+     "cp_9_8",
+     "cp_9_d",
+     "sc_13_a",
+     "sc_28_1",
+     "sc_8_3",
+     "sc_8_4",
+     "si_19_4"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "RDS DB instance storage is encrypted at rest",
+   "desc": "**RDS DB instances** are assessed for **KMS-based encryption at rest** (`StorageEncrypted=true`), covering instance storage and derived artifacts such as snapshots, automated backups, and read replicas.",
+   "uid": "prowler-aws-rds_instance_storage_encrypted-111122223333-us-gov-west-1-bgp-prod",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:rds:us-gov-west-1:111122223333:db:bgp-prod",
+    "name": "bgp-prod",
+    "region": "us-gov-west-1",
+    "type": "AwsRdsDbInstance"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enable **encryption at rest** for all RDS instances. Prefer **customer-managed KMS keys** to control rotation and fine-grained access, applying **least privilege** and **defense in depth**. Restrict key usage, monitor key activity, and manage key lifecycle. Migrate unencrypted instances via encrypted snapshot copy and restore."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "bgp-prod passed: RDS instance has backup retention period greater than 0 days.",
+  "metadata": {
+   "event_code": "rds_instance_backup_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Medium",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "bgp-prod passed: RDS instance has backup retention period greater than 0 days.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "cp_10",
+     "cp_10_2",
+     "cp_1_2",
+     "cp_2_5",
+     "cp_6_1",
+     "cp_6_2",
+     "cp_6_a",
+     "cp_9_a",
+     "cp_9_b",
+     "cp_9_c",
+     "sc_5_2",
+     "si_13_5"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "RDS instance has backup retention period greater than 0 days",
+   "desc": "**RDS DB instances** are evaluated for **automated backups** by confirming the backup retention period is greater than `0` days, indicating point-in-time recovery is configured.",
+   "uid": "prowler-aws-rds_instance_backup_enabled-111122223333-us-gov-west-1-bgp-prod",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:rds:us-gov-west-1:111122223333:db:bgp-prod",
+    "name": "bgp-prod",
+    "region": "us-gov-west-1",
+    "type": "AwsRdsDbInstance"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enable **automated backups** with retention > `0` aligned to RPO/RTO. Regularly test restores to validate **PITR**.\n\nApply **least privilege** to backup access, encrypt snapshots, and replicate critical backups to separate locations for **defense in depth** and resilient recovery."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "ebs-default-encryption passed: EBS default encryption is enabled.",
+  "metadata": {
+   "event_code": "ec2_ebs_default_encryption",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "ebs-default-encryption passed: EBS default encryption is enabled.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "au_9_3",
+     "cm_6_a",
+     "cm_9_b",
+     "cp_9_d",
+     "sc_13_a",
+     "sc_28_1",
+     "sc_8_3",
+     "sc_8_4",
+     "si_19_4"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "EBS default encryption is enabled",
+   "desc": "**EBS** uses `encryption by default` at the account and region level, ensuring new volumes, snapshots, and AMI-backed volumes are automatically encrypted with a chosen **KMS key**",
+   "uid": "prowler-aws-ec2_ebs_default_encryption-111122223333-us-gov-west-1-ebs-default-encryption",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:ec2:us-gov-west-1:111122223333:ebs-default-encryption",
+    "name": "ebs-default-encryption",
+    "region": "us-gov-west-1",
+    "type": "AwsEc2Volume"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enable `EBS encryption by default` in every region and select a **customer-managed KMS key**. Apply **least privilege** to key use, rotate keys, and monitor access. Enforce encrypted volume creation with organizational guardrails and secure templates as **defense in depth**."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "2cb1a3d4e5f6 passed: GuardDuty detector is enabled and not suspended.",
+  "metadata": {
+   "event_code": "guardduty_is_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "2cb1a3d4e5f6 passed: GuardDuty detector is enabled and not suspended.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_2_12_a",
+     "ac_3_12_b",
+     "au_12_3",
+     "au_14_a",
+     "au_14_b",
+     "au_3_1",
+     "au_6_1",
+     "au_6_5",
+     "ca_2_d",
+     "ca_7",
+     "ca_7_b",
+     "cm_8_3_a",
+     "pe_6_2",
+     "pe_6_4",
+     "pm_14_a_1",
+     "pm_14_b",
+     "pm_16",
+     "pm_31",
+     "ra_10_a",
+     "ra_10_a_1",
+     "ra_10_a_2",
+     "ra_1_a",
+     "ra_1_a_1",
+     "ra_1_a_2",
+     "ra_3_4",
+     "ra_3_a_1",
+     "ra_5_4",
+     "ra_5_a",
+     "sc_43_b",
+     "sc_5_1",
+     "sc_5_3_a",
+     "sc_5_3_b",
+     "sc_5_a",
+     "sc_5_b",
+     "si_3_8_a",
+     "si_4_1",
+     "si_4_10",
+     "si_4_13_a",
+     "si_4_14",
+     "si_4_2",
+     "si_4_23",
+     "si_4_25",
+     "si_4_3",
+     "si_4_4_a",
+     "si_4_4_b",
+     "si_4_a",
+     "si_4_a_1",
+     "si_4_a_2",
+     "si_4_b",
+     "si_4_c",
+     "si_5_1",
+     "si_5_b"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "GuardDuty detector is enabled and not suspended",
+   "desc": "**Amazon GuardDuty** detector existence and health are evaluated per Region. It identifies where GuardDuty isn't enabled for the account, where a detector has no status, or where a detector is configured but `suspended`.",
+   "uid": "prowler-aws-guardduty_is_enabled-111122223333-us-gov-west-1-2cb1a3d4e5f6",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:guardduty:us-gov-west-1:111122223333:detector/2cb1a3d4e5f6",
+    "name": "2cb1a3d4e5f6",
+    "region": "us-gov-west-1",
+    "type": "AwsGuardDutyDetector"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enable and keep **GuardDuty** active in all supported Regions and accounts under a delegated admin. Turn on relevant protection plans and auto-enroll new accounts. Avoid `suspended` detectors, enforce **least privilege** for admins, and integrate findings into response for **defense in depth**."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "bgp-attachments passed: S3 bucket is not publicly accessible to Everyone or Authenticated Users.",
+  "metadata": {
+   "event_code": "s3_bucket_public_access",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Critical",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "bgp-attachments passed: S3 bucket is not publicly accessible to Everyone or Authenticated Users.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_17_1",
+     "ac_17_10",
+     "ac_17_4_a",
+     "ac_17_9",
+     "ac_17_b",
+     "ac_2_6",
+     "ac_3",
+     "ac_3_7",
+     "ac_4_21",
+     "ac_6",
+     "cm_6_a",
+     "cm_9_b",
+     "mp_2",
+     "sc_25",
+     "sc_7_11",
+     "sc_7_12",
+     "sc_7_16",
+     "sc_7_2",
+     "sc_7_20",
+     "sc_7_21",
+     "sc_7_24_b",
+     "sc_7_25",
+     "sc_7_26",
+     "sc_7_27",
+     "sc_7_28",
+     "sc_7_3",
+     "sc_7_7",
+     "sc_7_9_a",
+     "sc_7_a",
+     "sc_7_b",
+     "sc_7_c"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "S3 bucket is not publicly accessible to Everyone or Authenticated Users",
+   "desc": "**Amazon S3 buckets** are evaluated for **public access** via ACLs and bucket policies. The check identifies account or bucket `PublicAccessBlock` protections (`IgnorePublicAcls`, `RestrictPublicBuckets`) and flags buckets granting group access to `AllUsers` or `AuthenticatedUsers`, or with a public bucket policy.",
+   "uid": "prowler-aws-s3_bucket_public_access-111122223333-us-gov-west-1-bgp-attachments",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:s3:::bgp-attachments",
+    "name": "bgp-attachments",
+    "region": "us-gov-west-1",
+    "type": "AwsS3Bucket"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enforce defense in depth: enable **S3 Block Public Access** at org/account and bucket levels (`BlockPublicAcls`, `IgnorePublicAcls`, `BlockPublicPolicy`, `RestrictPublicBuckets`). Apply **least privilege** with explicit principals; avoid ACLs via Object Ownership. Use private access patterns (e.g., CloudFront OAC or presigned URLs) and monitor with analyzers."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "bgp-exports passed: S3 bucket is not publicly accessible to Everyone or Authenticated Users.",
+  "metadata": {
+   "event_code": "s3_bucket_public_access",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "Critical",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "bgp-exports passed: S3 bucket is not publicly accessible to Everyone or Authenticated Users.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "ac_17_1",
+     "ac_17_10",
+     "ac_17_4_a",
+     "ac_17_9",
+     "ac_17_b",
+     "ac_2_6",
+     "ac_3",
+     "ac_3_7",
+     "ac_4_21",
+     "ac_6",
+     "cm_6_a",
+     "cm_9_b",
+     "mp_2",
+     "sc_25",
+     "sc_7_11",
+     "sc_7_12",
+     "sc_7_16",
+     "sc_7_2",
+     "sc_7_20",
+     "sc_7_21",
+     "sc_7_24_b",
+     "sc_7_25",
+     "sc_7_26",
+     "sc_7_27",
+     "sc_7_28",
+     "sc_7_3",
+     "sc_7_7",
+     "sc_7_9_a",
+     "sc_7_a",
+     "sc_7_b",
+     "sc_7_c"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "S3 bucket is not publicly accessible to Everyone or Authenticated Users",
+   "desc": "**Amazon S3 buckets** are evaluated for **public access** via ACLs and bucket policies. The check identifies account or bucket `PublicAccessBlock` protections (`IgnorePublicAcls`, `RestrictPublicBuckets`) and flags buckets granting group access to `AllUsers` or `AuthenticatedUsers`, or with a public bucket policy.",
+   "uid": "prowler-aws-s3_bucket_public_access-111122223333-us-gov-west-1-bgp-exports",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:s3:::bgp-exports",
+    "name": "bgp-exports",
+    "region": "us-gov-west-1",
+    "type": "AwsS3Bucket"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "Enforce defense in depth: enable **S3 Block Public Access** at org/account and bucket levels (`BlockPublicAcls`, `IgnorePublicAcls`, `BlockPublicPolicy`, `RestrictPublicBuckets`). Apply **least privilege** with explicit principals; avoid ACLs via Object Ownership. Use private access patterns (e.g., CloudFront OAC or presigned URLs) and monitor with analyzers."
+  },
+  "class_name": "Detection Finding"
+ },
+ {
+  "message": "default passed: Security Hub is enabled with standards or integrations configured.",
+  "metadata": {
+   "event_code": "securityhub_enabled",
+   "product": {
+    "name": "Prowler",
+    "vendor_name": "Prowler"
+   },
+   "version": "1.4.0"
+  },
+  "severity": "High",
+  "status": "New",
+  "status_code": "PASS",
+  "status_detail": "default passed: Security Hub is enabled with standards or integrations configured.",
+  "unmapped": {
+   "compliance": {
+    "NIST-800-53-Revision-5": [
+     "au_12_3",
+     "au_14_a",
+     "au_14_b",
+     "au_6_1",
+     "au_6_5",
+     "ca_2_d",
+     "ca_7",
+     "ca_7_b",
+     "pm_14_a_1",
+     "pm_14_b",
+     "pm_31"
+    ]
+   }
+  },
+  "finding_info": {
+   "title": "Security Hub is enabled with standards or integrations configured",
+   "desc": "**AWS Security Hub** is `ACTIVE` in the Region and has at least one enabled **security standard** or connected **integration**. Otherwise, it is either not enabled or enabled without standards/integrations.",
+   "uid": "prowler-aws-securityhub_enabled-111122223333-us-gov-west-1-default",
+   "created_time_dt": "2026-10-12T09:15:00"
+  },
+  "resources": [
+   {
+    "uid": "arn:aws-us-gov:securityhub:us-gov-west-1:111122223333:hub/default",
+    "name": "default",
+    "region": "us-gov-west-1",
+    "type": "Other"
+   }
+  ],
+  "cloud": {
+   "provider": "aws",
+   "account": {
+    "uid": "111122223333",
+    "type": "AWS Account"
+   },
+   "region": "us-gov-west-1"
+  },
+  "remediation": {
+   "desc": "- Enable in all required accounts/Regions\n- Turn on relevant **standards** (`AWS FSBP`, `CIS`)\n- Connect AWS and third-party **integrations**\n- Use **central configuration** and **least privilege**\n- Automate triage and monitor continuously for **defense in depth**"
+  },
+  "class_name": "Detection Finding"
+ }
+]

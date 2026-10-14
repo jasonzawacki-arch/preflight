@@ -94,6 +94,17 @@ export interface PoamItem {
   milestones: Milestone[];
   residualRisk: string; // required when risk is accepted
   closedAt?: string;
+  scan?: ScanLink; // set when the item came from a scanner import
+}
+
+/** Where an imported POA&M item came from, so a later scan updates or closes it instead of duplicating it. */
+export interface ScanLink {
+  key: string; // 'prowler:kms_cmk_rotation_enabled'
+  tool: string; // 'Prowler'
+  check: string;
+  controls: string[]; // every control the check maps to
+  resources: string[]; // affected resources at the last scan
+  lastSeen: string; // date of the last scan that included the check
 }
 
 export interface State {

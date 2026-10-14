@@ -255,6 +255,7 @@ export function poamOscal(s: State): object {
       { name: 'source', ns: NS, value: p.source },
       { name: 'point-of-contact', ns: NS, value: p.poc || 'unassigned' },
       { name: 'detected', ns: NS, value: p.created },
+      ...(p.scan ? [{ name: 'scan-check', ns: NS, value: `${p.scan.tool}: ${p.scan.check}` }] : []),
     ],
     'related-risks': [{ 'risk-uuid': uuidFor(k, 'risk', p.id) }],
     ...(p.residualRisk.trim() ? { remarks: `Residual risk: ${p.residualRisk.trim()}` } : {}),
