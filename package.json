@@ -1,0 +1,1 @@
+{"description":"Open-source ATO readiness tracker for federal contractors","devDependencies":{"typescript":"^5.6.0"},"name":"preflight","scripts":{"build":"tsc -p .","check":"tsc -p ."},"type":"module","version":"0.1.0"}
