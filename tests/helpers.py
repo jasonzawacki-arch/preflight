@@ -1,5 +1,5 @@
 """Shared test setup: serve dist/site on a local port and open pages with error capture."""
-import functools, http.server, threading
+import functools, http.server, os, threading
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -22,6 +22,8 @@ class Checks:
         print(('OK  ' if ok else 'FAIL'), name, '' if ok else detail)
         if not ok:
             self.fails.append(name)
+            if os.environ.get('GITHUB_ACTIONS'):  # failures show as annotations on the run
+                print(f'::error title=FAIL {name}::{str(detail)[:900]}', flush=True)
 
 
 def page(browser, base, errs, **ctx):
