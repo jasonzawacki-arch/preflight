@@ -158,6 +158,16 @@ with sync_playwright() as pw:
 
     # ---- phone layout ----
     ctx, m = page(b, BASE, errs, viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True)
+    # a wide fallback font, as on CI runners, so layout checks do not depend on the machine
+    m.add_style_tag(content="body,input,select,textarea,button{font-family:'DejaVu Sans',Verdana,sans-serif !important}")
+    for h in ['#/dashboard', '#/controls', '#/control/AC-2(13)', '#/evidence', '#/poam', '#/poam/POAM-001', '#/export', '#/system']:
+        go(m, h)
+        for vw in (390, 320):
+            m.set_viewport_size({'width': vw, 'height': 844}); m.wait_for_timeout(100)
+            w = m.evaluate('document.documentElement.scrollWidth')
+            if w > vw:
+                check(f'no sideways scrolling at {vw}px on {h}', False, w)
+    m.set_viewport_size({'width': 390, 'height': 844}); go(m, '#/dashboard')
     check('no sideways scrolling on a phone', m.evaluate('document.documentElement.scrollWidth') <= 390)
     go(m, '#/controls')
     m.locator('.clist a[data-id="AC-3"]').tap(); m.wait_for_timeout(300)
