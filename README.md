@@ -4,7 +4,7 @@ ATO readiness tracker for federal contractors. Assess every NIST SP 800-53 Rev. 
 
 **[Try the demo](https://jasonzawacki-arch.github.io/preflight/)**: it opens on a fictional system partway through a Moderate assessment. No sign-in.
 
-![Readiness: the score, and every Moderate control as a cell colored by status](docs/screenshots/preflight.jpg)
+![A tour of Preflight: the readiness page and control map, a control with its implementation statement, then a sample Prowler scan imported into POA&M items](docs/screenshots/preflight-tour.gif)
 
 ## What it does
 
